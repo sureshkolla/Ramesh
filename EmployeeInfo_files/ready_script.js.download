@@ -1,0 +1,198 @@
+var focusobject;
+$(document).ready(function(){	
+	 /* Error message close  */ 
+	$('.alert .closeme').on('click', function(e) {
+		 $(this).parent().hide();	 
+		 if(typeof focusobject !='undefined') focusobject.focus(); 		
+		 e.preventDefault()
+	});
+	/* Onclose title redirecting to WelcomePage page  */
+	$('h1 button.closeme').on('click', function(e) {	
+		 e.preventDefault();
+		 document.location.href="WelcomePage.aspx";
+	});
+	/* Modal Popup defeault prevent*/
+	/* $('input[href*="-"]').on('click', function(e) {	 
+		  e.preventDefault()
+	}); */
+	$('.menu-text').hover(function () {
+		$(this).find('i').removeClass('hides');
+	}, function () {
+		$(this).find('i').addClass('hides');
+	});
+	/* Open previous opned tab for CompanyConfig  */
+	$('#myTab4 a[data-toggle="tab"]').on('click', function(e) {
+		localStorage.setItem('activeTab', $(this).attr('href'));		
+		$($(this).attr('href')).find(".defaultwarning").hide();
+		$($(this).attr('href')).find("input.validate").focus();
+	});
+	var activeTab = localStorage.getItem('activeTab'); 
+	if (activeTab) {
+		$('#myTab4 a[href="' + activeTab + '"]').tab('show');
+		if($(activeTab).find('.errorlabel').html() !='') $(activeTab).find('.createac').show();
+		$(activeTab).find("input.validate").focusTextToEnd();		
+	}  
+	 /* Menu Default selector */
+	$("#sidebar #"+$("#currentpagename").val()).addClass('active');	 	 
+	
+	if($('.row').hasClass('compconfig')){
+		$('.logintime').editableSelect({
+			onSelect: function (element) {			
+				$('.loginTime-Select').val($(this).val());			
+			}, 
+			filter: false			 
+		});	 
+		$('.logouttime').editableSelect({
+			onSelect: function (element) {
+				$('.logoutTime-Select').val($(this).val());
+			}, 
+			filter: false 
+		});
+	}	
+	 
+	/* Inactive List separator    */
+	$.each($('.inactivedata option'), function(index, control) {
+		 var fv=$(this).attr('value');
+		 var values=fv.split('-');
+		 if(values[1]=='N' || values[1]=='n')
+		$(this).addClass('text-danger');
+	});	 	
+	/* Submit click on enter keyboard  */
+	//$(this).parents('table').find("input[id$='cmdSave']").trigger('click');
+	$("form input,form select").keypress(function (e) {  
+	  if (e.which == 13) {  
+		 e.preventDefault();
+		 if($('.row').hasClass('compconfig') && !$('.row').hasClass('offjoin'))
+	 	 $(this).parents('table').find("input[type='submit']").trigger('click');	
+		else if($('.row').hasClass('offjoin'))
+	 	 $(this).parents('table').find("input[id$='Search']").trigger('click');
+		else
+	 	 $(this).parents('.row').find("input[id$='Save']").trigger('click');
+	  }
+	}); 
+ 
+	/* Onchange activate same address checkbox */
+	$(".addresstable input[type='text']").focusout(function (e) { 	
+		if($('.txtpAddress1').val()!='' && $('.txtcPin').val()!='')
+			$(".sameaddresstr").removeClass('hide');
+	});	
+	$("#sameaddress").on('click',function(){
+		if($(this).is(':checked')){
+			$.each($('.addresstable tr'), function(index, control) {
+					$(this).find("input[type='text']").eq(1).val($(this).find("input[type='text']").eq(0).val());
+			});
+		}else{
+			$.each($('.addresstable tr'), function(index, control) {
+				$(this).find("input[type='text']").eq(1).val('');
+		  });
+		}
+	});	
+	
+  var successstring=$(".alert span").text(); 
+  var res = successstring.match(/success/i);  
+  if(res="success" && res!=null){
+		 $(".alert").removeClass('alert-info').addClass('alert-success').find('.errorlabel').removeClass('text-info').addClass('text-success');
+   } 
+  var res = successstring.match(/Please/i);  
+  if(res="Please" && res!=null){
+		 $(".alert").removeClass('alert-info').addClass('alert-danger').find('.errorlabel').removeClass('text-info').addClass('text-danger');
+   }   
+	 $(".fBrowser").change(function (e) {
+		 var filename = $(this).val().replace(/C:\\fakepath\\/i, ''); 
+		 $('.ace-file-container').html(filename);
+	 });
+	});  
+(function($){
+	$.fn.focusTextToEnd = function(){
+		this.focus();
+		var $thisVal = this.val();
+		this.val('').val($thisVal);
+		return this;
+	}
+}(jQuery));
+/* Date Picker plugins initialize */
+$(function () {
+    $(".hasDatepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '-75:+5',
+        showButtonPanel: true,
+        closeText: 'Clear',
+        clearBtn: true,
+        onClose: function (dateText, inst) {
+            if ($(window.event.srcElement).hasClass('ui-datepicker-close')) {
+                document.getElementById(this.id).value = '';
+            }
+        }
+    });
+});
+
+/* Profile PopUp plugins initialize */
+$(document).ready(function() {	
+	$(".various").fancybox({
+		maxWidth	: 400,
+		maxHeight	: 180,
+		fitToView	: true,
+		width		: '70%',
+		height		: '38%',
+		autoSize	: false,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none',
+		 afterClose: function () { 
+			parent.location.reload(true);
+		}
+	});
+	if($('.defaultwarning').find('.errorlabel').html() !='') $('.defaultwarning').show();
+	if($.trim($('.offersJoinesright').find('div').html()) !='') $('.offersJoinesright').addClass("overflowx"); 
+	if($.trim($('.rolloutoffer').height()) >450) $('.rolloutoffer').css("overflow-y","scroll");	
+	if($('.alert').is(':visible')){		
+		 setTimeout(function() {
+			$(".alert").slideUp(10);
+		}, 5000);
+	}		
+}); 
+/* Allow Numbers only */
+function isNumberKey(evt, svalue) {	
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if((charCode >= 48 && charCode <= 57) || charCode == 32) {
+		return true;
+	}
+	else if (svalue.indexOf('.') == -1 && charCode == 46) {
+		return true;
+	}
+	else
+	return false;
+}
+/* Generic function for show error message */
+function displayAlert(smessagetoDiplay,focusobject) {	
+	var timeout;
+	clearTimeout(timeout);
+	$(".defaultwarning").show();
+	$("body").find('*').removeClass('borderred');	  
+	if(typeof focusobject !='undefined')  { 		
+		focusobject.className = focusobject.className + " borderred";
+	}
+	
+	timeout= setTimeout(function() {
+       $(".defaultwarning").slideUp(10);
+    }, 5000);
+    $(".defaultwarning").addClass('alert-danger').find('.errorlabel').addClass('alert-danger').html(smessagetoDiplay);
+	if(typeof focusobject !='undefined')
+	return focusobject;
+}
+function displayAlertinPopup(smessagetoDiplay,focusobject) {	
+	var timeout;
+	clearTimeout(timeout);
+	$(".modal-body .defaultwarning").fadeIn(10);
+	$("body").find('*').removeClass('borderred');	  
+	if(typeof focusobject !='undefined')  { 	
+		focusobject.className = focusobject.className + " borderred";
+	}
+	timeout=  setTimeout(function() {
+        $(".modal-body .defaultwarning").slideUp(10);
+    }, 5000);
+    $(".modal-body .defaultwarning").addClass('alert-danger').find('.errorlabel').addClass('alert-danger').html(smessagetoDiplay);
+	if(typeof focusobject !='undefined')
+	return focusobject;
+}
