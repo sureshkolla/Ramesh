@@ -1,0 +1,189 @@
+*
+{
+	padding: 0px 0px;
+	margin: 0px;
+}
+body
+{
+	background:#294072; 
+	font-family: Verdana;
+}
+.form
+{
+	width:800px; 
+	margin:0 auto; 
+	margin-top:150px;
+}	
+.li 
+{
+
+	padding:0 20px; 
+	width:10%; 
+	text-align:center; 
+	color:#0C6; 
+	border-radius:3px 0 0 3px;
+}
+.signup span.fname
+{
+	align-items: center;
+	padding:0 80px; 
+	width:50%; 
+	text-align:center; 
+	color:#0C6; 
+	border-radius:3px 0 0 3px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.signup
+{
+	margin-right: auto;
+	margin-left: auto;
+	padding:0 80px;
+}
+.or
+{
+	color: white;
+	line-height: 50px;
+
+	text-align: center;
+}
+.social
+{
+	margin-right: auto;
+	margin-left: auto;
+	height:30px;
+	line-height:30px;
+	display:table; 
+	width:100%;
+}
+.social div
+{
+	font-family: Times New Roman;
+	font-size: 20px;
+	display:inline-block; 
+	width:42%; color:#eee; 
+	text-align:center; 
+	border-radius:3px;
+}
+.fb
+{
+
+	background:#3B5A9A;
+	padding: 10px;
+	 border-bottom: 3px #3399CC;
+}
+	  .tt
+{
+		margin-left: auto;
+		margin-right: auto;
+	  	background:#2CA8D2; 
+	  	padding: 10px;
+	 
+	  	border-bottom:3px #3399CC;
+}
+div.fname
+{
+	padding: 10px;
+	 border-bottom: 3px #3399CC;
+	align-items: center;
+	size: 20px;
+	padding:0 80px; 
+	width:50%; 
+	text-align:center; 
+	color:#0C6; 
+	border-radius:3px 0 0 3px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.fname
+{
+align-items: auto;
+size: 20px;
+padding: 0 80px;
+width: 50%;
+color: white;
+
+}
+ .fn
+{
+	width:245px;
+	text-align: center;
+	font-family: Times New Roman;
+	font-size: 25px;
+	padding: 18px;
+	height: 10px;
+}
+.em
+{
+	text-align: center;
+	font-family: Times New Roman;
+	font-size: 25px;
+	margin: auto;
+	margin-right: auto;
+	margin-left: auto;
+	width: 84%;
+	padding: 18px;
+	height: 10px;
+}
+.pas
+{
+	text-align: center;
+	font-family: Times New Roman;
+	font-size: 25px;
+	margin: auto;
+	margin-right: auto;
+	margin-left: auto;
+	width: 84%;
+	padding: 18px;
+	height: 10px;
+}
+.tm
+{
+	text-align: auto;
+	font-size: 15px;
+	font-family: Times New Roman;
+	color: white
+
+}	
+a.tc
+{
+
+	font-size: 20px;
+	font-family: times new Roman;
+	color:blue;
+	text-decoration: none;
+}
+a.tc:active
+{
+	color:red;
+	text-decoration: none;
+}
+a.tc:hover
+{
+	color: red;
+	text-decoration: none;
+
+}
+div.cr
+{
+	text-decoration: none;
+	text-align: center;
+	font-size: 20px;
+	font-family: times new Roman;
+	color: white;
+	background-color: green;
+	width: 84%;
+	padding: 18px;
+	height: 10px;
+	border-radius: solid 3px;
+}
+div.cr:hover,div.cr:active,div.cr:visited
+{
+	text-decoration: none;
+	color: blue;
+}
+.ca
+{
+	text-decoration: none;
+}
+
